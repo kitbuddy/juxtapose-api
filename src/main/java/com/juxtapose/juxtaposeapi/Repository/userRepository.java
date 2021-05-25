@@ -4,7 +4,10 @@ import com.juxtapose.juxtaposeapi.CommonConstants.ApiConstants;
 import com.juxtapose.juxtaposeapi.model.JuxtaposeUser;
 import com.juxtapose.juxtaposeapi.repositoryAPI.IUserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -37,5 +40,26 @@ public class userRepository implements IUserRepository {
              throw new Exception("Received Exception from repository");
         }
 
+    }
+
+    @Override
+    public List<JuxtaposeUser> getUsersById(Integer Id) throws DatabasePropertyViolationException {
+
+        MapSqlParameterSource mappedParameters = new MapSqlParameterSource();
+        mappedParameters.addValue("id", Id);
+
+        try {
+            List<JuxtaposeUser> getUserListById = namedParameterJdbcTemplate.
+                    query(apiConstants.getUsersById,
+                            mappedParameters,
+                            (rs, rowNum) -> repositoryUtil.buildJuxtaposeUser(rs, rowNum));
+
+
+            log.info(apiConstants.getUsersById);
+            return getUserListById;
+
+        } catch (DataAccessException exe) {
+            throw  new DatabasePropertyViolationException("Error occured while fetching data for user via ID", exe, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
 }

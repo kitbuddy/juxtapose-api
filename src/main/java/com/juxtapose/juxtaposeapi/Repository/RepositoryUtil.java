@@ -17,7 +17,9 @@ public class RepositoryUtil {
     public JuxtaposeUser buildJuxtaposeUser(ResultSet rs, int number) throws SQLException {
 
         log.info("entering buildJuxtaposeUser ");
-        return JuxtaposeUser.builder().first_name(rs.getString(apiConstants.FIRST_NAME))
+        return JuxtaposeUser.builder()
+                                      .id(rs.getInt(apiConstants.id))
+                                      .first_name(rs.getString(apiConstants.FIRST_NAME))
                                       .last_name(rs.getString(apiConstants.LAST_NAME))
                                       .email(rs.getString(apiConstants.EMAIL))
                                       .phone(rs.getString(apiConstants.PHONE)).build();

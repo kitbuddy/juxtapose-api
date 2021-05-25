@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JuxtaposeUser {
-    String id;
+    Integer id;
     String first_name;
     String last_name;
     String email;
