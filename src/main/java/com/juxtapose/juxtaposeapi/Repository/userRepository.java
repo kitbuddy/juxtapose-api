@@ -62,7 +62,7 @@ public class userRepository implements IUserRepository {
             return getUserListById;
 
         } catch (DataAccessException exe) {
-            throw  new DatabasePropertyViolationException("Error occured while fetching data for user via ID", exe, HttpStatus.UNPROCESSABLE_ENTITY);
+            throw  new DatabasePropertyViolationException("Error occurred while fetching data for user via ID", exe, HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 }
