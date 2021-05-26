@@ -45,6 +45,9 @@ public class userRepository implements IUserRepository {
     @Override
     public List<JuxtaposeUser> getUsersById(Integer Id) throws DatabasePropertyViolationException {
 
+        if(Id == null) {
+            log.info("No Id received to fetch user");
+        }
         MapSqlParameterSource mappedParameters = new MapSqlParameterSource();
         mappedParameters.addValue("id", Id);
 
