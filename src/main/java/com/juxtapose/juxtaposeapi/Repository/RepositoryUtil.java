@@ -1,6 +1,6 @@
 package com.juxtapose.juxtaposeapi.Repository;
 
-import com.juxtapose.juxtaposeapi.CommonConstants.ApiConstants;
+import com.juxtapose.juxtaposeapi.Utils.CommonConstants.ApiConstants;
 import com.juxtapose.juxtaposeapi.model.JuxtaposeUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

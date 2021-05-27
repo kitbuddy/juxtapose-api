@@ -1,4 +1,4 @@
-package com.juxtapose.juxtaposeapi.CommonConstants;
+package com.juxtapose.juxtaposeapi.Utils.CommonConstants;
 
 public class ApiConstants {
 
@@ -11,4 +11,7 @@ public class ApiConstants {
     public static final String getUserDataSql = "select * from juxtaposeUser";
     public static final String getUsersById = "select * from juxtaposeUser " +
             "WHERE id = :id";
+
+    public static final String FILE_CONTROLLER = "FILE Controller";
+
 }
