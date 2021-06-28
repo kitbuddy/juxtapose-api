@@ -2,10 +2,10 @@
 
     import com.juxtapose.juxtaposeapi.Utils.CommonConstants.ApiConstants;
     import com.juxtapose.juxtaposeapi.model.JuxtaposeUser;
+    import com.juxtapose.juxtaposeapi.model.MenuItems;
     import com.juxtapose.juxtaposeapi.model.RequestModels.JuxtaposeUserRequest;
     import com.juxtapose.juxtaposeapi.repositoryAPI.IUserRepository;
     import lombok.extern.slf4j.Slf4j;
-    import org.apache.logging.log4j.util.Strings;
     import org.springframework.dao.DataAccessException;
     import org.springframework.http.HttpStatus;
     import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,7 +13,6 @@
     import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
     import org.springframework.stereotype.Repository;
     import org.springframework.util.ObjectUtils;
-    import org.springframework.util.StringUtils;
 
     import java.util.List;
     import java.util.Objects;
@@ -121,6 +120,21 @@
 
             return Optional.of(juxtaposeUsersList);
         }
+
+        @Override
+        public List<MenuItems> getAllMenuItems() throws Exception {
+            log.debug("Entering getAllUser");
+
+            try {
+                List<MenuItems> result = namedParameterJdbcTemplate.query(apiConstants.getAllMenuItemsSql,
+                        (rs, rowName) -> repositoryUtil.buildMenuItem(rs, rowName));
+                return result;
+
+            } catch (Exception e) {
+                throw new Exception("Received Exception from repository");
+            }
+
+    }
 
         private void resetAllVAlues() {
             this.ID_check = "";

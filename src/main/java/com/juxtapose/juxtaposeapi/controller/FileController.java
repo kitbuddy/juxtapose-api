@@ -59,4 +59,10 @@ public class FileController {
         }
         return this.getAllUsersService.getUserByGlobalSearch(juxtaposeUserRequest);
     }
+
+    @GetMapping(path = "/menu")
+    public List<JuxtaposeUser> getMenuItems() throws Exception {
+        log.info("Entering getJuxtaposeUser controller ............ ");
+        return this.getAllUsersService.getAllUsersService();
+    }
 }

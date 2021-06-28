@@ -2,6 +2,7 @@ package com.juxtapose.juxtaposeapi.service;
 
 import com.juxtapose.juxtaposeapi.Repository.DatabasePropertyViolationException;
 import com.juxtapose.juxtaposeapi.model.JuxtaposeUser;
+import com.juxtapose.juxtaposeapi.model.MenuItems;
 import com.juxtapose.juxtaposeapi.model.RequestModels.JuxtaposeUserRequest;
 import com.juxtapose.juxtaposeapi.repositoryAPI.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,10 @@ public class GetAllUsersService {
     public Optional<List<JuxtaposeUser>> getUserByGlobalSearch(JuxtaposeUserRequest juxtaposeUserRequest) throws DatabasePropertyViolationException {
         log.info("Entering getUserByGlobalSearch for GetAllUsersService");
         return  iUserRepository.getUserByGlobalSearch(juxtaposeUserRequest);
+    }
+
+    public List<MenuItems> getAllMenu() throws Exception {
+        log.info("Entering getAllUsersService for GetAllUsersService");
+        return  iUserRepository.getAllMenuItems();
     }
 }
